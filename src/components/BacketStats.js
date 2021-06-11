@@ -1,4 +1,5 @@
 import React from 'react';
+import ProgressBar from './ProgressBar';
 
 
 const BacketStats =  () => {
@@ -26,6 +27,7 @@ const BacketStats =  () => {
                <p className="text">days left</p>
            </div>
           
+           <ProgressBar/>
 
         </section>
     )
