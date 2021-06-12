@@ -12,6 +12,14 @@ body{
     background:#F2F2F2;
     position:relative;
 }
+
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    
+}
 .container{
     width:87%;
     max-width:730px;
@@ -64,10 +72,29 @@ body{
     margin-top:1.5rem;
 }
 
+.modal{
+    position:absolute;
+    top:0px;
+    left:0;
+    width:100%;
+    height:100%;
+    mix-blend-mode: normal;
+
+}
+
+.menu-hamburger{
+    height:212px;
+    background:$pure-white;
+    margin-top: 5.5rem;
+    opacity: 1;
+    border: 1px solid rgba(0, 0, 0, 0.0497193);
+box-sizing: border-box;
+border-radius: 8px;
+}
+
 .hero-section{
    width: 100%;
    height:300px;
-   max-height: 400px;
    position:relative;
  
    
@@ -90,6 +117,13 @@ body{
          
        }
    }
+
+   @media(min-width: 1440px)
+   {
+       height:400px;
+   }
+
+
 }
 
 
@@ -109,7 +143,11 @@ body{
         margin:2rem 1.5rem 4.74rem 1.5rem;
         height:1.25rem;
       
-        
+      @media(min-width: 1440px)
+      {
+          padding:0 10.3rem;
+          margin-top:3rem;
+      }  
        
     }
 }
@@ -197,6 +235,7 @@ body{
 .about-section{
 
     margin-top: 1.5rem;
+    margin-bottom: 4.75rem;
     padding:2.5rem 1.5rem;
 
     h2{
@@ -256,4 +295,19 @@ body{
       font-weight: $fw700;
       margin-top: 1.5rem;
   }
+}
+
+.menu-links{
+    width: 225px;
+    ul{
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+
+        a{
+            color:$pure-white;
+            font-weight: $fw500;
+            font-size: 13px;
+        }
+    }
 }
