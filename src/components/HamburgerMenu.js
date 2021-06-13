@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import Modal from './Modal';
+import Modal from '../Modal';
 import iconHamburger from '../assets/icon-hamburger.svg';
 import iconCloseMenu from '../assets/icon-close-menu.svg';
 import BacketStats from './BacketStats';
@@ -13,13 +13,25 @@ const HamburgerMenu = () => {
     const renderMenu = () =>{
         return(
             <div className = "menu-hamburger container">
+               <ul >
+                   <li className="item-list">
+                       <a href="#">About</a>
+                  </li>
 
+                  <li className="item-list">
+                       <a href="#">Discover</a>
+                  </li>
+
+                  <li className="item-list">
+                       <a href="#">Get Started</a>
+                  </li>
+               </ul>
             </div>
         )
     }
     const renderModal = () =>{
         if(isMenuOpen)
-           return <Modal backgroundColor="linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.0001) 100%)" opacity={0.6} component = {renderMenu()}/>
+           return <Modal styling={'modal'}  content ={renderMenu()} />
     }
     return (
         <>
