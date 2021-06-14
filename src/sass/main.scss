@@ -79,18 +79,75 @@ a{
     width:100%;
     height:100%;
     background:linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0, 0, 0, 0.0001) 100%);
-   
 
 }
-.circle{
+
+.defaultModal{
     position:absolute;
     top:0;
     left:0;
+    width:100%;
+    height:100%;
+    background:  rgba(0,0,0,0.5);
+    z-index: 10;
+}
+ 
+.circle{
+  
     width: 56px;
     height: 56px;
     border-radius: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
     
-    //margin-right: 1rem;
+}
+.circleDesktopMode{
+    position:absolute;
+    top:0;
+    left:0; 
+}
+.bg-black{
+    background: #2F2F2F;
+}
+.bg-brown{
+ background:#707070;
+}
+.bg-modern-cyan{
+  background:$Dark-cyan;
+}
+.bookMarkedText{
+    color:$Dark-cyan;
+}
+
+.modal-pledge-content{
+    background:$pure-white;
+    margin-top: 7.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.0497193);
+    padding:2rem 1.5rem;
+
+    .header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+       
+        h2{
+            font-size: 1.125rem;
+            font-weight: $fw700;
+        }
+
+    }
+    .text{
+        text-align: left;
+        margin:1.5rem 0;
+
+    }
+
+    @media(min-width:1440px)
+    {
+        margin-top: 12em;
+    }
 }
 
 .menu-hamburger{
@@ -121,20 +178,28 @@ a{
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background:rgba(#2F2F2F,0.05);
     border-radius: 33.5px;
     height: 56px;
+    padding:1rem 2rem;
     cursor:pointer;
 
 
 span{
+    display: inline-block;
     font-size: 1rem;
     font-weight:$fw700;
     color:$color-text;
-    margin:0 1.5rem 0 1rem;
+    margin-left: 2rem;
+   
 }
 }
 
+.bookmark-toogle{
+    background:rgba($Dark-cyan,0.05);
+
+}
 
 
 .hero-section{
