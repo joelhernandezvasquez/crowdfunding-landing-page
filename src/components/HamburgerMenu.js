@@ -31,7 +31,7 @@ const HamburgerMenu = () => {
     }
     const renderModal = () =>{
         if(isMenuOpen)
-           return <Modal styling={'modal'}  content ={renderMenu()} />
+           return <Modal onDismiss = {() => setMenu(!isMenuOpen)} styling={'modal'}  content ={renderMenu()} />
     }
     return (
         <>

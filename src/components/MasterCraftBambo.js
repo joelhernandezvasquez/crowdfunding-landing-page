@@ -40,7 +40,11 @@ const MasterCraftBambo = () => {
             <div className="modal-pledge-content container">
                <div className="header">
                  <h2 >Back this project</h2>
-                 <img src={iconClose} alt="close icon" onClick = {()=>setModal(!isModalOpen) }/>
+                 <img className="icon-close" 
+                 src={iconClose} alt="close icon" 
+                 onClick = {()=>setModal(!isModalOpen) }
+                 
+                 />
                </div>
                <p className="text"> Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world? </p>
                <PledgeCard 
@@ -89,7 +93,7 @@ const MasterCraftBambo = () => {
            <div className="action-btn-container">
                <button className="btn btn-back-project" onClick = {() => setModal(!isModalOpen)}>Back this Project</button>
                {renderBookmarkIcon()}
-               {isModalOpen? <Modal onDismiss = {setModal()} styling="defaultModal" content = {renderModal()}/>: null}
+               {isModalOpen? <Modal onDismiss = {() =>setModal(!isModalOpen)} styling="defaultModal" content = {renderModal()}/>: null}
            </div>
         </div>
     )

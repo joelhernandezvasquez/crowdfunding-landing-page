@@ -5,13 +5,26 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
     const renderPledgeCardModalVersion = () =>{
         return (
             <div className = "pledge-card box">
+               <div className="custom-header-pledge">
+               <div className="custom-radio-button" onClick = {() => console.log("hello")}> 
+                 
+               </div>
+               
                <div className="header-container">
                <h3>{title}</h3>
-               <p>{price}</p>
+                 {price && (<p>{price}</p>)}
+              
                </div>
+               </div>
+
                <p className="text content">{content}</p>
                <div className="footer-container">
-               <h1 className="amount-left">{amountLeft}<span>Left</span></h1>
+               
+               {amountLeft &&( 
+               <h1 className="amount-left-modal">
+                   {amountLeft}<span>Left</span>
+              </h1>
+              )}
            </div>
             </div>
         )

@@ -120,6 +120,23 @@ a{
     color:$Dark-cyan;
 }
 
+.icon-close{
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.custom-radio-button{
+    width:1.5rem;
+    height:1.5rem;
+    border-radius: 50%;
+    background:$pure-white;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+     box-sizing: border-box;
+     margin-right: 1rem;
+     cursor: pointer;
+}
+
 .modal-pledge-content{
     background:$pure-white;
     margin-top: 7.5rem;
@@ -399,6 +416,13 @@ span{
 .pledge-card{
   padding:1.5rem;
   margin-top: 1.5rem;
+  
+
+  .custom-header-pledge{
+    display:flex;
+    align-items: center;
+   
+  }
     .header-container{
 
         h3{
@@ -424,6 +448,14 @@ span{
       font-weight: $fw700; 
       display: flex; 
       align-items: center;
+  }
+
+  .amount-left-modal{
+    font-size: 18px;
+    color:$Black;
+    font-weight: $fw700; 
+    display: flex; 
+    align-items: center; 
   }
   span{
       font-size: 15px;
