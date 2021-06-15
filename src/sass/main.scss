@@ -119,6 +119,9 @@ a{
 .bookMarkedText{
     color:$Dark-cyan;
 }
+.current-pledge{
+    border: 2px solid #3CB3AB;
+}
 
 .icon-close{
     &:hover{
@@ -127,6 +130,9 @@ a{
 }
 
 .custom-radio-button{
+    display:flex;
+    align-items: center;
+    justify-content: center;
     width:1.5rem;
     height:1.5rem;
     border-radius: 50%;
@@ -135,6 +141,18 @@ a{
      box-sizing: border-box;
      margin-right: 1rem;
      cursor: pointer;
+
+     .inner-radio-button{
+         display: none;
+         width: 12px;
+         height: 12px;
+         border-radius: 50%;
+         background:$moderate-cyan;
+     }
+     .active.inner-radio-button{
+         display: block;
+     }
+
 }
 
 .modal-pledge-content{

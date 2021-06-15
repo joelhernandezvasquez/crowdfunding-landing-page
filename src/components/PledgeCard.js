@@ -1,13 +1,49 @@
-import React from 'react';
+import React,{useRef} from 'react';
 
 const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
+
+   const pledgeCardRef = useRef(null);
+   const radioButtonRef  = useRef(null);
+   
+    const handleActiveRadio = () =>{
+    const activeRadio = document.querySelector(".active");
+ 
+    if(!activeRadio)
+    {
+      radioButtonRef.current.classList.add("active");
+    }
+    else{
+        activeRadio.classList.remove("active");
+      radioButtonRef.current.classList.add("active");
+    } 
+   }
+   
+    
+  const onChangePledgeCard = () =>{
+    
+   const current  = document.querySelector(".current-pledge");
+
+    if(!pledgeCardRef.current.classList.contains('current-pledge'))
+   { 
+        handleActiveRadio();
+       if(!current)
+          pledgeCardRef.current.classList.add('current-pledge');
+
+          else{
+            current.classList.toggle("current-pledge");
+            pledgeCardRef.current.classList.add('current-pledge');
+          }
+      }
+         
+   }
     
     const renderPledgeCardModalVersion = () =>{
+        
         return (
-            <div className = "pledge-card box">
+            <div ref= {pledgeCardRef} className = {`pledge-card box`} >
                <div className="custom-header-pledge">
-               <div className="custom-radio-button" onClick = {() => console.log("hello")}> 
-                 
+               <div className="custom-radio-button" onClick = {(e) => onChangePledgeCard(e)}> 
+                  <div ref={radioButtonRef} className={`inner-radio-button`}></div>
                </div>
                
                <div className="header-container">
