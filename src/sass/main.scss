@@ -179,6 +179,15 @@ a{
 
     }
 
+    .select-pledge-box{
+      
+      .text{margin:0;
+        padding-top: 1rem;
+    }
+    
+     
+    }
+
     @media(min-width:1440px)
     {
         margin-top: 12em;
@@ -434,7 +443,7 @@ span{
 .pledge-card{
   padding:1.5rem;
   margin-top: 1.5rem;
-  
+  position:relative;
 
   .custom-header-pledge{
     display:flex;

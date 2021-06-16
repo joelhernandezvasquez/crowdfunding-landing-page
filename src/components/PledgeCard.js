@@ -1,11 +1,40 @@
-import React,{useRef} from 'react';
+
+import React,{useRef,useEffect,useState} from 'react';
 
 const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
 
    const pledgeCardRef = useRef(null);
    const radioButtonRef  = useRef(null);
-   
-    const handleActiveRadio = () =>{
+   const selectPledgeBoxRef = useRef(null);
+   const[pledgeCardWidth,setPledgeCardWith] = useState(null);
+   const[boxPledge,setBoxPledge] = useState(null);
+
+   useEffect(() => {
+    
+      window.addEventListener("resize",()=>{
+       if(pledgeCardRef.current && selectPledgeBoxRef.current)
+       {
+         console.log("render1");
+         setPledgeCardWith(pledgeCardRef.current.getBoundingClientRect().width);
+         setBoxPledge(selectPledgeBoxRef.current.getBoundingClientRect().top);
+       }    
+    })
+   }, [])
+    
+   useEffect(() => {
+      
+      
+      if(pledgeCardRef.current && selectPledgeBoxRef.current)
+       {
+
+         setPledgeCardWith(pledgeCardRef.current.getBoundingClientRect().width);
+         setBoxPledge(selectPledgeBoxRef.current.getBoundingClientRect().top);
+         console.log("render2");
+         
+       }
+   },[pledgeCardWidth,boxPledge])
+    
+   const handleActiveRadio = () =>{
     const activeRadio = document.querySelector(".active");
  
     if(!activeRadio)
@@ -36,6 +65,20 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
       }
          
    }
+
+   const getLine = () =>{
+   
+     return{
+       
+        width:`${pledgeCardWidth}px`,
+        height:'1px',
+        background:'rgba(0,0,0,0.15)',
+        position:'absolute',
+        top:`${boxPledge}}px`,
+        left:'0',
+      
+      }
+   }
     
     const renderPledgeCardModalVersion = () =>{
         
@@ -48,7 +91,7 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
                
                <div className="header-container">
                <h3>{title}</h3>
-                 {price && (<p>{price}</p>)}
+                 {price && (<p>{`Pledge $${price} or more`}</p>)}
               
                </div>
                </div>
@@ -62,6 +105,16 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
               </h1>
               )}
            </div>
+               {amountLeft &&(
+                 <div ref={selectPledgeBoxRef} className="select-pledge-box top-spacing">
+                    <div style={getLine()}></div>
+                    <p className="text">Enter your Pledge</p>
+                    <div class="pledge-input-container">
+                       <div><span>$</span>{price}</div>
+                       <button className="btn">Continue</button>
+                    </div>
+                 </div>
+               )}
             </div>
         )
     }
@@ -71,7 +124,7 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
         <div className="pledge-card box">
            <div className="header-container">
                <h3>{title}</h3>
-               <p>{price}</p>
+               <p>{`Pledge  $${price} or more`}</p>
            </div>
            <p className="text content">{content}</p>
            <div className="footer-container">
