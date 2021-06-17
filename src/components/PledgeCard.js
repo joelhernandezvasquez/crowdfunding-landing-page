@@ -1,7 +1,8 @@
 
 import React,{useRef,useEffect,useState} from 'react';
 
-const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
+
+const PledgeCard = ({title,price,content,amountLeft,modalVersion,onDismiss}) => {
 
    const pledgeCardRef = useRef(null);
    const radioButtonRef  = useRef(null);
@@ -14,7 +15,6 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
       window.addEventListener("resize",()=>{
        if(pledgeCardRef.current && selectPledgeBoxRef.current)
        {
-         console.log("render1");
          setPledgeCardWith(pledgeCardRef.current.getBoundingClientRect().width);
          setBoxPledge(selectPledgeBoxRef.current.getBoundingClientRect().top);
        }    
@@ -29,7 +29,6 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
 
          setPledgeCardWith(pledgeCardRef.current.getBoundingClientRect().width);
          setBoxPledge(selectPledgeBoxRef.current.getBoundingClientRect().top);
-         console.log("render2");
          
        }
    },[pledgeCardWidth,boxPledge])
@@ -47,6 +46,28 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
     } 
    }
    
+
+   const handleShowPlegdeSelection = () =>{
+    
+      const current = document.querySelector(".show");
+       
+      
+      
+      if(!selectPledgeBoxRef.current.classList.contains("show"))
+      {
+         if(!current)
+           selectPledgeBoxRef.current.classList.add("show");
+
+         else{
+            current.classList.toggle("show");
+            selectPledgeBoxRef.current.classList.add("show");
+         }
+      }
+   
+  
+
+
+   }
     
   const onChangePledgeCard = () =>{
     
@@ -54,7 +75,10 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
 
     if(!pledgeCardRef.current.classList.contains('current-pledge'))
    { 
-        handleActiveRadio();
+        
+      handleActiveRadio();
+       handleShowPlegdeSelection();
+
        if(!current)
           pledgeCardRef.current.classList.add('current-pledge');
 
@@ -76,10 +100,12 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
         position:'absolute',
         top:`${boxPledge}}px`,
         left:'0',
+       
       
       }
    }
     
+  
     const renderPledgeCardModalVersion = () =>{
         
         return (
@@ -91,7 +117,7 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
                
                <div className="header-container">
                <h3>{title}</h3>
-                 {price && (<p>{`Pledge $${price} or more`}</p>)}
+                 {price!==0 && (<p>{`Pledge $${price} or more`}</p>)}
               
                </div>
                </div>
@@ -105,16 +131,16 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion}) => {
               </h1>
               )}
            </div>
-               {amountLeft &&(
+               
                  <div ref={selectPledgeBoxRef} className="select-pledge-box top-spacing">
                     <div style={getLine()}></div>
                     <p className="text">Enter your Pledge</p>
                     <div class="pledge-input-container">
                        <div><span>$</span>{price}</div>
-                       <button className="btn">Continue</button>
+                       <button className="btn" onClick={onDismiss}> Continue</button>
                     </div>
                  </div>
-               )}
+               
             </div>
         )
     }

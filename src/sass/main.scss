@@ -161,6 +161,7 @@ a{
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.0497193);
     padding:2rem 1.5rem;
+  
 
     .header{
         display: flex;
@@ -179,11 +180,59 @@ a{
 
     }
 
-    .select-pledge-box{
-      
-      .text{margin:0;
-        padding-top: 1rem;
+    .show.select-pledge-box{
+        display:block;
     }
+    .select-pledge-box{
+       display:none;
+    .text
+    {
+        margin:0;
+        padding-top: 1rem;
+        text-align: center;
+    }
+    .pledge-input-container{
+      display:flex;
+      align-items: center;
+      justify-content: space-around;
+      margin:1rem 0;
+
+      div{
+         display: flex;
+         align-items: center;
+        
+          border: 1px solid rgba(0, 0, 0, 0.15);
+         box-sizing: border-box;
+          border-radius: 33.5px;
+          padding:1rem 2rem;
+          font-size: 14px;
+          color:$Black;
+          font-weight: $fw700;
+         
+
+          span{
+             display: inline-block;  
+            margin:0 0.5rem 0 0;
+              font-size: 14px;
+              color:$Black;
+              opacity: 0.25;
+              mix-blend-mode: normal;
+              font-weight: $fw700;
+             
+          }
+      }
+       .btn{
+           padding:1rem 1.5rem;
+           font-weight: $fw700;
+           transition: all 0.2s ease-in-out;
+           cursor: pointer;
+           
+           &:hover{
+               background:$Dark-cyan;
+           }
+       }
+    }
+    
     
      
     }
@@ -191,6 +240,19 @@ a{
     @media(min-width:1440px)
     {
         margin-top: 12em;
+        padding:3rem;
+        .header{
+            h2{
+                font-size: 1.5rem;
+               
+            }  
+        }
+        .text{
+            font-size: 1rem;
+      
+          }
+       
+
     }
 }
 
@@ -448,6 +510,8 @@ span{
   .custom-header-pledge{
     display:flex;
     align-items: center;
+
+    
    
   }
     .header-container{
@@ -464,6 +528,13 @@ span{
           font-weight: $fw500;
           margin-top:0.5rem;
 
+      }
+
+      @media(min-width: 1440px)
+      {
+          h3{
+              font-size: 1rem;
+          }
       }
   }
   .text{
@@ -513,4 +584,26 @@ span{
             font-size: 13px;
         }
     }
+}
+
+.pledge-completed{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.0497193);
+box-sizing: border-box;
+border-radius: 8px;
+padding:2rem 1.5rem 2.5rem;
+margin-top: 8.8rem;
+
+.title{
+    font-size: 18px;
+}
+
+.btn{
+    padding:1rem 2rem;
+    font-weight: $fw700;
+    margin-top: 2rem;
+}
+
 }
