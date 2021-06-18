@@ -1,13 +1,19 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import ProgressBar from './ProgressBar';
+import BackedStatsContext from '../ContextApi/Backed/BackedStatsContext';
 
 
 const BacketStats =  () => {
-    return (
+    
+  const backedStatsContext = useContext(BackedStatsContext);
+
+  //console.log(backedStatsContext.totalMoney);
+  return (
         <section className="backed-stats-section container box">
            <div className="backed-box">
                 {/* // here goes a piece of state */}
-               <h1 className="header">$89,914</h1>
+               
+               <h1 className="header">{backedStatsContext.totalMoney}</h1>
                <p className="text">of $100,000 backed</p>
            </div>
 
@@ -15,7 +21,7 @@ const BacketStats =  () => {
 
            <div className="backed-box">
                  {/* // here goes a piece of state */}
-               <h1 className="header">5,007</h1>
+               <h1 className="header">{backedStatsContext.totalBackers}</h1>
                <p className="text">total backers</p>
             </div>
 
@@ -23,7 +29,7 @@ const BacketStats =  () => {
              
            <div className="backed-box">
                  {/* // here goes a piece of state */}
-                 <h1 className="header">56</h1>
+                 <h1 className="header">60</h1>
                <p className="text">days left</p>
            </div>
           

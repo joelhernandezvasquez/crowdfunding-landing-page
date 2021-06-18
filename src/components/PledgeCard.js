@@ -1,5 +1,8 @@
 
-import React,{useRef,useEffect,useState} from 'react';
+import React,{useRef,useEffect,useState,useContext} from 'react';
+import Modal from '../Modal';
+import iconClose from '../assets/icon-close-modal.svg';
+import BackedStatsContext from '../ContextApi/Backed/BackedStatsContext';
 
 
 const PledgeCard = ({title,price,content,amountLeft,modalVersion,onDismiss}) => {
@@ -9,6 +12,8 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion,onDismiss}) => 
    const selectPledgeBoxRef = useRef(null);
    const[pledgeCardWidth,setPledgeCardWith] = useState(null);
    const[boxPledge,setBoxPledge] = useState(null);
+   const [isModalOpen,setModalOpen] = useState(false);
+   const context = useContext(BackedStatsContext);
 
    useEffect(() => {
     
@@ -45,6 +50,67 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion,onDismiss}) => 
       radioButtonRef.current.classList.add("active");
     } 
    }
+
+   const closeModal = () =>{
+      setModalOpen(!isModalOpen); 
+  }
+  const onSubmitPledge = () =>{
+     context.addMoney(20);
+     onDismiss();
+  }
+
+   const renderModal = () =>{
+      return (
+          <div className="modal-pledge-content container">
+             <div className="header">
+               <h2 >Back this project</h2>
+               <img className="icon-close" 
+               src={iconClose} alt="close icon" 
+               onClick = {()=>setModalOpen(!isModalOpen) }
+               
+               />
+             </div>
+             <p className="text"> Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world? </p>
+             <PledgeCard 
+             title="Pledge with no reward"
+             price={0}
+             content = "Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email."
+             modalVersion = {true}
+             onDismiss = {closeModal}
+            />
+            
+            <PledgeCard
+              title = "Bamboo Stand"
+              price = {25}
+              content = "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list."
+              amountLeft= {101}
+              modalVersion = {true}
+              onDismiss = {closeModal}
+            />
+
+           <PledgeCard
+              title = "Black Edition Stand"
+              price = {75}
+              content = "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer member list. Shipping is included."
+              amountLeft= {64}
+              modalVersion = {true}
+              onDismiss = {closeModal}
+            />
+
+          <PledgeCard
+              title = "Mahogany Special Edition"
+              price = {200}
+              content = "You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included."
+              amountLeft= {1}
+              modalVersion = {true}
+              onDismiss = {closeModal}
+            />
+             
+
+          
+          </div>
+      )
+  }
    
 
    const handleShowPlegdeSelection = () =>{
@@ -110,6 +176,7 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion,onDismiss}) => 
         
         return (
             <div ref= {pledgeCardRef} className = {`pledge-card box`} >
+               <div className="grid-2">
                <div className="custom-header-pledge">
                <div className="custom-radio-button" onClick = {(e) => onChangePledgeCard(e)}> 
                   <div ref={radioButtonRef} className={`inner-radio-button`}></div>
@@ -137,16 +204,18 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion,onDismiss}) => 
                     <p className="text">Enter your Pledge</p>
                     <div class="pledge-input-container">
                        <div><span>$</span>{price}</div>
-                       <button className="btn" onClick={onDismiss}> Continue</button>
+                       <button className="btn" onClick={() => onSubmitPledge()}> Continue</button>
                     </div>
                  </div>
                
+            </div>
             </div>
         )
     }
 
     const renderPledgeCard = () =>{
         return (
+        <>
         <div className="pledge-card box">
            <div className="header-container">
                <h3>{title}</h3>
@@ -155,9 +224,12 @@ const PledgeCard = ({title,price,content,amountLeft,modalVersion,onDismiss}) => 
            <p className="text content">{content}</p>
            <div className="footer-container">
             <h1 className="amount-left">{amountLeft}<span>Left</span></h1>
-            <button className="btn btn-reward">Select Reward</button>
+            <button className="btn btn-reward" onClick = {() => setModalOpen(!isModalOpen)}>Select Reward</button>
            </div>
         </div>
+        {isModalOpen? <Modal styling="defaultModal" content={renderModal()}/>: null}
+        </>
+        
         )
     }
     
